@@ -1,8 +1,10 @@
+const STORE_NAME = 'global_store'
+
 import { defineStore } from 'pinia'
 
 export interface Account {
     id: number
-    mark: string | { text: string }[]
+    mark: { text: string }[]
     typeOfRecord: string
     login: string
     password: string | null
@@ -14,11 +16,20 @@ interface AccountsStore {
     accounts: Account[]
 }
 
+const getDefaultStore = (): AccountsStore => ({
+    countOfIDs: 0,
+    accounts: [],
+})
+
+const getStore = (): AccountsStore => {
+    const store = localStorage.getItem(STORE_NAME)
+
+    return store ? JSON.parse(store) : getDefaultStore()
+}
+
 export const useAccountsStore = defineStore('accounts', {
-    state: (): AccountsStore => ({
-        countOfIDs: 0,
-        accounts: [],
-    }),
+    state: getStore,
+
     actions: {
         pushAccount(account: Account) {
             this.accounts.push(account)
@@ -41,6 +52,13 @@ export const useAccountsStore = defineStore('accounts', {
                 const accounts = this.accounts
                 accounts[index] = { ...account }
                 this.accounts = accounts
+                localStorage.setItem(
+                    STORE_NAME,
+                    JSON.stringify({
+                        countOfIDs: this.countOfIDs,
+                        accounts: this.accounts,
+                    }),
+                )
             }
         },
         updateAccount(account: Account) {

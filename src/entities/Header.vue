@@ -7,7 +7,7 @@
         accountStore.pushAccount({
             id: count,
             login: '',
-            mark: '',
+            mark: [],
             password: '',
             typeOfRecord: '1',
             isValid: 'validate',
