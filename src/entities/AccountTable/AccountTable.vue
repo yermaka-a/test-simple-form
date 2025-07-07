@@ -22,25 +22,11 @@
             }
         }
         if (acc.login.length > 0 && acc.login.length <= 100) {
-            // валидация метки
-            console.log('mark', acc.mark)
-            if (
-                typeof acc.mark === 'string' &&
-                acc.mark.includes(';', 0) &&
-                acc.mark.length <= 50
-            ) {
-                const lastIndex = acc.mark.lastIndexOf(';')
-                const sub = acc.mark.slice(0, lastIndex)
-                const parts = sub.split(';')
-                acc.mark = parts.map((el) => ({
-                    text: el,
-                }))
-            }
+            store.acceptAccount(acc)
         } else {
             acc.isValid = 'invalid'
             return
         }
-        store.acceptAccount(acc)
     }
 
     const updateModelVal = (payload: Array<{ text: string }>, acc: Account) => {
