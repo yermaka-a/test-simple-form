@@ -1,5 +1,17 @@
 <script setup lang="ts">
-    import { BaseBtn } from '~/shared'
+    import { BaseBtn, useAccountsStore } from '~/shared'
+    const accountStore = useAccountsStore()
+    const addAccount = () => {
+        accountStore.updateCount()
+        const count = accountStore.count
+        accountStore.pushAccount({
+            id: count,
+            login: '',
+            mark: [],
+            password: '',
+            typeOfRecord: 1,
+        })
+    }
 </script>
 
 <template>
@@ -8,7 +20,7 @@
             <h1 class="font-bold mr-3.5 text-4xl text-gray-200">
                 Учетные записи
             </h1>
-            <BaseBtn />
+            <BaseBtn @click="addAccount" />
         </div>
     </header>
 </template>
