@@ -2,6 +2,7 @@
     import { defineModel } from 'vue'
 
     defineProps<{
+        isValid?: 'validate' | 'valid' | 'invalid'
         placeholder?: string
         maxLength?: number
         type?: string
@@ -16,7 +17,9 @@
 </script>
 <template>
     <input
+        :class="isValid === 'invalid' ? 'shadow-sm shadow-red-400' : ''"
         @change="onChange"
+        :disabled="isValid === 'valid' ? true : false"
         v-model="newModel"
         :placeholder="placeholder"
         :type="type === 'undefined' ? 'text' : type"

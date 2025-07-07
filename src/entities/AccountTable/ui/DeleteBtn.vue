@@ -1,14 +1,10 @@
 <script setup lang="ts">
-    import { useAccountsStore } from '~/shared'
     import bin from '~/shared/assets/bin.png'
     const props = defineProps<{ accountId?: number }>()
-    const accountStore = useAccountsStore()
+
+    const emit = defineEmits(['click'])
     const onClick = () => {
-        console.group('delete')
-        console.log(props.accountId)
-        if (props.accountId) accountStore.deleteById(props.accountId)
-        console.log(accountStore.accounts)
-        console.groupEnd()
+        emit('click', props.accountId)
     }
 </script>
 <template>

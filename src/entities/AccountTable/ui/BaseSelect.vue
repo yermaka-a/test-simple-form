@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    const newModel = defineModel<number>()
+    const newModel = defineModel<string>()
 </script>
 <template>
     <select v-model="newModel">
