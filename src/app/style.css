@@ -4,3 +4,4 @@ body{
 
 @import 'tailwindcss';
 
+@tailwind utilities;
