@@ -9,6 +9,13 @@ export default defineConfig({
         alias: {
             '~': resolve(__dirname, 'src'),
         },
-        extensions: ['*.vue', '*.ts', '*.json'],
+        extensions: ['.vue', '.ts', '.json'],
+    },
+    build: {
+        rollupOptions: {
+            input: {
+                main: './src/app/main.ts',
+            },
+        },
     },
 })
