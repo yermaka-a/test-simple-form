@@ -3,13 +3,14 @@
     const accountStore = useAccountsStore()
     const addAccount = () => {
         accountStore.updateCount()
-        const count = accountStore.count
+        const count = accountStore.countOfIDs
         accountStore.pushAccount({
             id: count,
             login: '',
-            mark: [],
+            mark: '',
             password: '',
-            typeOfRecord: 1,
+            typeOfRecord: '1',
+            isValid: 'validate',
         })
     }
 </script>
